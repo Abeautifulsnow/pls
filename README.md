@@ -5,10 +5,10 @@
 
 ### Installation
 
-#### 1) 使用 `go get` 安装 
+#### 1) 使用 `go install` 安装 
 
 ```shell
-$ go get -u github.com/chenjiandongx/pls
+$ go install github.com/GoToUse/pls@latest
 ```
 
 #### 2) 使用编译好的二进制版本

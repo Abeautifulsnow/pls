@@ -8,11 +8,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const (
-	maxCurrency = 6
-	maxRetry    = 3
-)
-
 func NewUpgradeCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "upgrade",
@@ -29,7 +24,7 @@ func upgradeCmd() {
 	var num, failed int64
 	l := len(commands)
 
-	ch := make(chan string, 2)
+	ch := make(chan string, 3)
 	wg := sync.WaitGroup{}
 
 	for i := 0; i < maxCurrency; i++ {

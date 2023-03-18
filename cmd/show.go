@@ -3,11 +3,8 @@ package cmd
 import (
 	"bufio"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
-	"net/http"
 	"os"
 	"path"
 	"path/filepath"
@@ -17,12 +14,6 @@ import (
 	"github.com/fatih/color"
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
-)
-
-const (
-	commandDir = ".commands"
-	commandCfg = "config.json"
-	commandUrl = "https://unpkg.com/linux-command@1.6.1/command/%s.md"
 )
 
 type config struct {
@@ -84,7 +75,7 @@ func showCmd(cmd string, force bool) {
 		}
 	}
 
-	source, err := ioutil.ReadFile(p)
+	source, err := os.ReadFile(p)
 	if err != nil {
 		fmt.Printf("[sorry]: failed to open file <%s>\n", p)
 		return
@@ -118,7 +109,7 @@ func genConfigFile() error {
 
 	if !isFileExist(configPath) {
 		bs, _ := json.Marshal(defaultCfg)
-		return ioutil.WriteFile(configPath, bs, 0666)
+		return os.WriteFile(configPath, bs, 0666)
 	}
 
 	return nil
@@ -129,7 +120,7 @@ func getConfigContent() (*config, error) {
 		return nil, err
 	}
 
-	bs, err := ioutil.ReadFile(configPath)
+	bs, err := os.ReadFile(configPath)
 	if err != nil {
 		return nil, err
 	}
@@ -141,10 +132,6 @@ func getConfigContent() (*config, error) {
 
 	return &cfgpath, nil
 }
-
-var (
-	ErrCommandNotFound = errors.New("command not found")
-)
 
 func retryDownloadCmd(cmd string) error {
 	for j := 0; j < maxRetry; j++ {
@@ -167,15 +154,10 @@ func downloadCmd(cmd string) error {
 		return err
 	}
 
-	resp, err := http.Get(fmt.Sprintf(commandUrl, cmd))
+	resp, err := returnResp(fmt.Sprintf(commandUrl, cmd))
 	if err != nil {
 		return err
 	}
-
-	if resp.StatusCode == http.StatusNotFound {
-		return ErrCommandNotFound
-	}
-
 	defer resp.Body.Close()
 
 	content := make([]byte, 0)
@@ -193,5 +175,5 @@ func downloadCmd(cmd string) error {
 	}
 
 	fp := path.Join(c.Dir, fmt.Sprintf("%s.md", cmd))
-	return ioutil.WriteFile(fp, content, 0666)
+	return os.WriteFile(fp, content, 0666)
 }
