@@ -12,7 +12,7 @@ func NewUpgradeCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "upgrade",
 		Short: "Upgrade all commands from remote.",
-		Run: func(cmd *cobra.Command, args []string) {
+		Run: func(_ *cobra.Command, _ []string) {
 			upgradeCmd()
 		},
 	}

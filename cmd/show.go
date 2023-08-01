@@ -12,7 +12,6 @@ import (
 
 	markdown "github.com/MichaelMure/go-term-markdown"
 	"github.com/fatih/color"
-	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 )
 
@@ -21,8 +20,9 @@ type config struct {
 }
 
 var (
-	commandPath = filepath.Join(getHomedir(), commandDir)
-	configPath  = filepath.Join(getHomedir(), commandDir, commandCfg)
+	homeDir     = getHomedir()
+	commandPath = filepath.Join(homeDir, commandDir)
+	configPath  = filepath.Join(homeDir, commandDir, commandCfg)
 	defaultCfg  = config{Dir: commandPath}
 )
 
@@ -81,12 +81,12 @@ func showCmd(cmd string, force bool) {
 		return
 	}
 	markdown.BlueBgItalic = color.New(color.FgBlue).SprintFunc()
-	result := markdown.Render(string(source), 80, 6)
+	result := markdown.Render(string(source), 80, 2)
 	fmt.Println(string(result))
 }
 
 func getHomedir() string {
-	home, _ := homedir.Expand("~")
+	home, _ := os.UserHomeDir()
 	return home
 }
 
@@ -136,6 +136,7 @@ func getConfigContent() (*config, error) {
 func retryDownloadCmd(cmd string) error {
 	for j := 0; j < maxRetry; j++ {
 		if err := downloadCmd(cmd); err != nil {
+			fmt.Println("[Info]: Retrying to download at", j+1, "time.")
 			continue
 		}
 		break

@@ -7,14 +7,14 @@ import (
 )
 
 const (
-	version = "pls version: [v0.1.5]"
+	version = "pls version: [v0.1.6]"
 )
 
 func NewVersionCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "version",
 		Short: "Prints the version of pls",
-		Run: func(cmd *cobra.Command, args []string) {
+		Run: func(_ *cobra.Command, _ []string) {
 			fmt.Println(version)
 		},
 	}
