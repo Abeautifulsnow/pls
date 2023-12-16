@@ -14,7 +14,7 @@ const (
 	maxRetry    = 3 // 最大重试次数
 )
 
-// errors
+// ErrCommandNotFound errors
 var (
 	ErrCommandNotFound = errors.New("command not found")
 )

@@ -34,6 +34,7 @@ func NewSearchCommand() *cobra.Command {
 	return cmd
 }
 
+// unmarshalIndex get all command descriptions list.
 func unmarshalIndex() map[string]commandIndex {
 	resp, err := returnResp(commandDataJson)
 	defer func() {
@@ -66,6 +67,7 @@ func unmarshalIndex() map[string]commandIndex {
 	return ret
 }
 
+// searchCmd search the specified command.
 func searchCmd(keywords string) {
 	keywords = strings.ToLower(keywords)
 

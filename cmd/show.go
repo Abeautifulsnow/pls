@@ -3,6 +3,7 @@ package cmd
 import (
 	"bufio"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -24,6 +25,8 @@ var (
 	commandPath = filepath.Join(homeDir, commandDir)
 	configPath  = filepath.Join(homeDir, commandDir, commandCfg)
 	defaultCfg  = config{Dir: commandPath}
+	lineWidth   = 80
+	lineLeftPad = 2
 )
 
 func NewShowCommand() *cobra.Command {
@@ -48,7 +51,7 @@ func showCmd(cmd string, force bool) {
 
 	if force {
 		if err := retryDownloadCmd(cmd); err != nil {
-			if err == ErrCommandNotFound {
+			if errors.Is(err, ErrCommandNotFound) {
 				fmt.Printf("[sorry]: could not found command <%s>\n", cmd)
 				return
 			}
@@ -69,7 +72,7 @@ func showCmd(cmd string, force bool) {
 			fmt.Printf("[sorry]: failed to retrieve command <%s>\n", cmd)
 			return
 		}
-		if err == ErrCommandNotFound {
+		if errors.Is(err, ErrCommandNotFound) {
 			fmt.Printf("[sorry]: could not found command <%s>\n", cmd)
 			return
 		}
@@ -81,10 +84,11 @@ func showCmd(cmd string, force bool) {
 		return
 	}
 	markdown.BlueBgItalic = color.New(color.FgBlue).SprintFunc()
-	result := markdown.Render(string(source), 80, 2)
+	result := markdown.Render(string(source), lineWidth, lineLeftPad)
 	fmt.Println(string(result))
 }
 
+// getHomedir get the home directory
 func getHomedir() string {
 	home, _ := os.UserHomeDir()
 	return home
@@ -125,12 +129,12 @@ func getConfigContent() (*config, error) {
 		return nil, err
 	}
 
-	cfgpath := config{}
-	if err := json.Unmarshal(bs, &cfgpath); err != nil {
+	cfgPath := config{}
+	if err := json.Unmarshal(bs, &cfgPath); err != nil {
 		return nil, err
 	}
 
-	return &cfgpath, nil
+	return &cfgPath, nil
 }
 
 func retryDownloadCmd(cmd string) error {
@@ -145,6 +149,7 @@ func retryDownloadCmd(cmd string) error {
 	return nil
 }
 
+// downloadCmd download the command content to local disk.
 func downloadCmd(cmd string) error {
 	c, err := getConfigContent()
 	if err != nil {
@@ -159,7 +164,13 @@ func downloadCmd(cmd string) error {
 	if err != nil {
 		return err
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+			fmt.Println("[Error]: Download", cmd, "error", err.Error())
+			return
+		}
+	}(resp.Body)
 
 	content := make([]byte, 0)
 	reader := bufio.NewReader(resp.Body)
