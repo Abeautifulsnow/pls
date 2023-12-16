@@ -8,7 +8,7 @@
 #### 1) 使用 `go install` 安装 
 
 ```shell
-$ go install github.com/GoToUse/pls@latest
+go install github.com/GoToUse/pls@latest
 ```
 
 #### 2) 使用编译好的二进制版本
@@ -18,7 +18,7 @@ https://github.com/chenjiandongx/pls/releases
 ### Usages
 
 ```shell
-~ 🐶 pls --help
+pls --help
 Impressive Linux commands cheat sheet cli.
 
 Usage:
@@ -39,19 +39,19 @@ Use "pls [command] --help" for more information about a command.
 
 建议第一次使用的时候先初始化所有命令
 ```shell
-$ 🐶 pls upgrade
+pls upgrade
 ```
 
 配置文件位于 `~/.commands/config.json` 可以更改命令文件下载目录
 
 ```shell
-❯ 🐶 cat ~/.commands/config.json
+cat ~/.commands/config.json
 {"dir":"/Users/chenjiandongx/.commands"}
 ```
 
 可以将输出结果传入到 less 管道
 ```shell
-$ 🐶 pls show curl | less
+pls show curl | less
 ```
 
 效果图
@@ -62,4 +62,4 @@ $ 🐶 pls show curl | less
 
 ### LICENSE
 
-MIT [©chenjiandongx](https://github.com/chenjiandongx)
+MIT [©Abeautifulsnow](https://github.com/Abeautifulsnow)
