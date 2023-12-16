@@ -47,5 +47,5 @@ func upgradeCmd() {
 	}
 	close(ch)
 	wg.Wait()
-	fmt.Printf("[clap]: all commands are upgraded. All: %d, Failed: %d", num, failed)
+	fmt.Printf("[clap]: all commands are upgraded. All: %d, Failed: %d\n", num, failed)
 }
