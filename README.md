@@ -8,12 +8,12 @@
 #### 1) 使用 `go install` 安装 
 
 ```shell
-go install github.com/GoToUse/pls@latest
+go install github.com/Abeautifulsnow/pls@latest
 ```
 
 #### 2) 使用编译好的二进制版本
 
-https://github.com/chenjiandongx/pls/releases
+https://github.com/Abeautifulsnow/pls/releases
 
 ### Usages
 
@@ -46,7 +46,7 @@ pls upgrade
 
 ```shell
 cat ~/.commands/config.json
-{"dir":"/Users/chenjiandongx/.commands"}
+{"dir":"/home/runstone/.commands"}
 ```
 
 可以将输出结果传入到 less 管道
