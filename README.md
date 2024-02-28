@@ -3,6 +3,8 @@
 
 > Impressive Linux commands cheat sheet cli. [Python 版本](https://github.com/chenjiandongx/how)
 
+`pls` is a fork of [pls](https://github.com/chenjiandongx/pls) which is not maintained any more. And it furnish the ability to render linux commands in Markdown format on your terminal.
+
 ## Installation
 
 ## 1) Install it by `go install` command 
