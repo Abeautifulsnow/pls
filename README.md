@@ -17,6 +17,12 @@ https://github.com/Abeautifulsnow/pls/releases
 
 ### Usages
 
+After the installation, change the `pls_<os>_amd64` binary file name to `pls` or other name you like[Let's say you name it `pls`].
+
+And then, on `linux or macos` system, you can copy the binary file to `/usr/local/bin/` or `/usr/bin/` directory which must be under the `PATH` variable that Linux or macos will search for executables when running a command.
+
+But on windows, you need to add it to the `PATH` variable list through windows interface.
+
 ```shell
 pls --help
 Impressive Linux commands cheat sheet cli.
