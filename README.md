@@ -3,19 +3,19 @@
 
 > Impressive Linux commands cheat sheet cli. [Python 版本](https://github.com/chenjiandongx/how)
 
-### Installation
+## Installation
 
-#### 1) 使用 `go install` 安装 
+## 1) Install it by `go install` command 
 
 ```shell
 go install github.com/Abeautifulsnow/pls@latest
 ```
 
-#### 2) 使用编译好的二进制版本
+## 2) The compiled binary file here
 
 https://github.com/Abeautifulsnow/pls/releases
 
-### Usages
+## Usages
 
 After the installation, change the `pls_<os>_amd64` binary file name to `pls` or other name you like[Let's say you name it `pls`].
 
@@ -43,29 +43,29 @@ Flags:
 Use "pls [command] --help" for more information about a command.
 ```
 
-建议第一次使用的时候先初始化所有命令
+To initialize all commands the first time you run them is strong recommended.
 ```shell
 pls upgrade
 ```
 
-配置文件位于 `~/.commands/config.json` 可以更改命令文件下载目录
+The config file is located in `~/.commands/config.json`, you can change the download directory in it.
 
 ```shell
 cat ~/.commands/config.json
 {"dir":"/home/runstone/.commands"}
 ```
 
-可以将输出结果传入到 less 管道
+You can also pass the output to the `less` pipe.
 ```shell
 pls show curl | less
 ```
 
-效果图
+## ScreenShot
 
 ![](https://user-images.githubusercontent.com/19553554/122259619-f1e3f780-cf04-11eb-949e-763d82a4e3b9.png)
 ![](https://user-images.githubusercontent.com/19553554/122258451-a0873880-cf03-11eb-865f-067416787cb7.png)
 
 
-### LICENSE
+## LICENSE
 
 MIT [©Abeautifulsnow](https://github.com/Abeautifulsnow)
