@@ -62,8 +62,8 @@ pls show curl | less
 
 ## ScreenShot
 
-![](https://user-images.githubusercontent.com/19553554/122259619-f1e3f780-cf04-11eb-949e-763d82a4e3b9.png)
-![](https://user-images.githubusercontent.com/19553554/122258451-a0873880-cf03-11eb-865f-067416787cb7.png)
+<img width="976" alt="image" src="https://github.com/Abeautifulsnow/pls/assets/28704977/355acc9d-cba3-4d24-b4c9-03ebdfcaa1f0">
+<img width="951" alt="image" src="https://github.com/Abeautifulsnow/pls/assets/28704977/8b523a65-528a-4046-b5f8-9ed388e9e873">
 
 
 ## LICENSE
