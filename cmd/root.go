@@ -23,6 +23,7 @@ func init() {
 		NewUpgradeCommand(),
 		NewVersionCommand(),
 		NewSearchCommand(),
+		ListCommand(),
 	)
 }
 
