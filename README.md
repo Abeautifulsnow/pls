@@ -36,6 +36,7 @@ Usage:
 
 Available Commands:
   help        Help about any command
+  list        List all commands that are available
   search      Search command by keywords
   show        Show the specified command usage.
   upgrade     Upgrade all commands from remote.

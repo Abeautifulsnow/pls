@@ -10,7 +10,7 @@ import (
 func ListCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "list",
-		Short: "list all commands that are available",
+		Short: "List all commands that are available",
 		Run: func(_ *cobra.Command, _ []string) {
 			listCommand()
 		},
