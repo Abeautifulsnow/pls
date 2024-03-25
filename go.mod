@@ -1,4 +1,4 @@
-module github.com/GoToUse/pls
+module github.com/Abeautifulsnow/pls
 
 go 1.20
 
