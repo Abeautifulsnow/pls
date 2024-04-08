@@ -61,10 +61,20 @@ cat ~/.commands/config.json
 {"dir":"/home/runstone/.commands"}
 ```
 
-你还可以将linux命令的输出内容输入到 `less` 管道中去查看：
+你还可以将linux命令的输出内容输入到 `less` 或者 [bat](https://github.com/sharkdp/bat) 管道中去查看：
 
 ```shell
+# 正常输出, 内容会非常多
+pls show curl
+pls list
+
+# less
 pls show curl | less
+pls list | less
+
+# bat
+pls show curl | bat
+pls list | bat
 ```
 
 ## 截图
