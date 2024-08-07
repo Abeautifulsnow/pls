@@ -17,4 +17,5 @@ const (
 // ErrCommandNotFound errors
 var (
 	ErrCommandNotFound = errors.New("command not found")
+	ErrTimeout         = errors.New("request timeout for fetching resources")
 )

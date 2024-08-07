@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"strings"
 
@@ -40,11 +41,14 @@ func unmarshalIndex() map[string]commandIndex {
 	defer func() {
 		err := resp.Body.Close()
 		if err != nil {
-			panic(err)
+			log.Fatalln(err)
 		}
 	}()
 	if err != nil {
-		panic(err)
+		if os.IsTimeout(err) {
+			log.Fatalln(ErrTimeout)
+		}
+		log.Fatalln(err)
 	}
 
 	content := make([]byte, 0)
@@ -52,7 +56,7 @@ func unmarshalIndex() map[string]commandIndex {
 	for {
 		line, _, err := reader.ReadLine()
 		if err != nil && err != io.EOF {
-			panic(err)
+			log.Fatalln(err)
 		}
 		if err == io.EOF {
 			break
